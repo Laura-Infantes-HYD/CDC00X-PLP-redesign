@@ -1,0 +1,132 @@
+.HYD-swatch {
+  display: inline-block;
+  height: 32px;
+  width: 32px;
+  border-radius: 50%;
+  margin-right: 0.25rem;
+
+  &:nth-of-type(3),
+  &:nth-of-type(4) {
+    @include mobile-only {
+      display: none;
+    }
+  }
+}
+
+//Placeholder swatches
+.HYD-swatch-list-wrap > .HYD-swatch {
+  background: white;
+
+  &:nth-of-type(3),
+  &:nth-of-type(4),
+  &:nth-of-type(5),
+  &:nth-of-type(6) {
+    @include mobile-only {
+      display: none;
+    }
+  }
+}
+
+.HYD-swatch-list-wrap {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: fit-content;
+  margin: auto;
+
+  background-color: $off-white;
+  padding: 0.5rem;
+  border-radius: 2rem;
+
+  @include mobile-only {
+    width: auto;
+    margin: 0 2.25rem;
+  }
+}
+
+.HYD-swatch-list-wrap > span {
+  position: absolute;
+
+  @include mobile-only {
+    max-width: 80px;
+    text-align: center;
+    left: calc(50% - 40px);
+    font-size: 14px;
+  }
+}
+
+.HYD-swatch-list {
+  display: flex;
+  justify-content: space-around;
+  background-color: $off-white;
+  border-radius: 2rem;
+
+  @include mobile-only {
+    margin: 0 2rem;
+  }
+}
+
+.HYD-white-swatch {
+  border: solid 1px rgba(122, 119, 119, 0.2);
+}
+
+.HYD-view-more-colours {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.HYD-swatch-more {
+  &--desktop {
+    display: none;
+  }
+
+  &--mobile {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(to right, #bebdbd, transparent);
+    border-radius: 50%;
+    height: 32px;
+    width: 32px;
+    font-size: 14px;
+  }
+
+  @include big-screen {
+    &--mobile {
+      display: none;
+    }
+    &--desktop {
+      display: block;
+    }
+  }
+
+  @include huge-screen {
+    &--mobile {
+      display: flex !important;
+    }
+    &--desktop {
+      display: none !important;
+    }
+  }
+}
+
+.HYD-swatch-more--mobile::after {
+  content: "";
+  position: absolute;
+  bottom: 5px;
+  left: 25%;
+  width: 50%;
+  height: 2px;
+  background-color: $gold;
+}
+
+.HYD-swatch-more--desktop::after {
+  content: "";
+  position: absolute;
+  bottom: 5px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: $gold;
+}

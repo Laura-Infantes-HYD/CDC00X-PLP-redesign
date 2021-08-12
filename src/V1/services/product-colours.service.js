@@ -1,32 +1,45 @@
 const getColours = async (url) => {
-    const page = await getProductPage(url)
-    const colours = extractColours(page)
+  const data = await getProductPage(url);
 
-    return colours
+  if (data.error) return data;
+
+  const colours = extractColours(data);
+
+  return colours || null;
 };
 
 const getProductPage = async (url) => {
-  const prodPage = await fetch(url, reqOptions).then((response) => {
-    return response.text();
-  });
-  
-  return toHTML(prodPage);
+  const myFetch = fetch || window.fetch;
+  const data = await myFetch(url, reqOptions)
+    .then((response) => response.text())
+    .then((response) => {
+      return response;
+    })
+    .catch((error) => {
+      console.log("error: ", error);
+      return { error: error };
+    });
+
+  console.log(data);
+
+  return data.error ? data : toHTML(data);
 };
 
-const toHTML = (string)=>{
-    let div = document.createElement('div')
-    div.innerHTML = string
+const toHTML = (string) => {
+  let div = document.createElement("div");
+  div.innerHTML = string;
 
-    return div
-}
+  return div;
+};
 
-const extractColours = (prodPageHtml)=>{
-    const dataContainingDiv = prodPageHtml.querySelector('page > div');
-    const coloursData = dataContainingDiv.getAttribute('colours');
-    const colours = JSON.parse(coloursData)
+const extractColours = (prodPageHtml) => {
+  const dataContainingDiv = prodPageHtml.querySelector("page > div");
+  if (!dataContainingDiv) return;
+  const coloursData = dataContainingDiv.getAttribute("colours");
+  const colours = JSON.parse(coloursData);
 
-    return colours
-}
+  return colours;
+};
 
 const reqOptions = (() => {
   return {

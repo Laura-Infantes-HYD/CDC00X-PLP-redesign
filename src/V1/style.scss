@@ -1,12 +1,5 @@
-.test001 {
-  .HYD-swatch {
-    display: inline-block;
-    height: 25px;
-    width: 25px;
-    border-radius: 50%;
-  }
+@import "./styles/common/index";
 
-  .HYD-swatch-list {
-    display: flex;
-  }
+.CDC013 {
+  @import "./styles/cards";
 }

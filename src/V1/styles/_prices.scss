@@ -1,0 +1,51 @@
+section.price {
+  margin-top: 1rem;
+}
+
+.offset-symbol {
+  position: relative;
+  display: flex;
+  flex-direction: row !important;
+  align-items: baseline;
+  justify-content: flex-start;
+
+  @include mobile-only {
+    flex-direction: column !important;
+    align-items: flex-start;
+  }
+}
+
+.offset-symbol::before {
+  content: "FROM";
+  position: absolute;
+  top: -15px;
+  opacity: 0.3;
+  font-weight: 800;
+
+  @include mobile-only {
+    left: 18px;
+  }
+}
+
+.offset-symbol > div > strong {
+  display: none;
+}
+
+.price.secondary {
+  display: flex;
+  flex-direction: row !important;
+  align-items: baseline;
+  margin-right: 1ch;
+}
+
+.price.secondary .text {
+  display: none;
+}
+
+.price.primary .amount::after {
+  content: " excl. VAT)";
+}
+
+.price.primary .amount::before {
+  content: "(";
+}

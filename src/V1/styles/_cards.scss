@@ -1,0 +1,32 @@
+&.CDC002 #results {
+  @import "./cta";
+  @import "./prices";
+  @import "./swatches";
+
+  .p-item .p-col {
+    padding-bottom: 0;
+    justify-content: flex-end;
+  }
+
+  .p-info.text-block {
+    padding-bottom: 0;
+  }
+
+  .p-col .price-block {
+    position: relative;
+  }
+
+  .p-info-text .name {
+    font-size: 18px;
+  }
+
+  .p-info-text .description {
+    display: none;
+  }
+
+  .p-image {
+    min-height: 300px;
+    max-height: 400px;
+    text-align: center;
+  }
+}

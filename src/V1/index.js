@@ -1,35 +1,38 @@
-import './style.scss';
-import pollForEl from '../helpers/pollForEl';
-import _onLoad from './components/_onLoad';
-import pollForTrue from '../helpers/pollForTrue';
-import qaCookieExists from '../helpers/qaCookieExists';
-import getColours from './services/product-colours.service';
-
-
+import "./style.scss";
+import pollForEl from "../helpers/pollForEl";
+import _onLoad from "./components/_onLoad";
+import pollForTrue from "../helpers/pollForTrue";
+import qaCookieExists from "../helpers/qaCookieExists";
+import getColours from "./services/product-colours.service";
+import isIE from "../helpers/isIE";
+import polyfillFetch from "../helpers/polyfillFetch";
+import "whatwg-fetch";
 
 // Test name to be added to ./style.scss and testName variable below
-const testName = "test001" // add test name here
+const testName = "CDC013"; // add test name here
 
-// Uncomment the following line to run peview links:
-// pollForTrue(()=>{return qaCookieExists(testName)}).then(()=>{pollForEl('body').then(init)})
+//Uncomment the following lines to run peview links:
+pollForTrue(() => {
+  return qaCookieExists(testName);
+}).then(() => {
+  pollForEl(".CDC002").then(init);
+});
 
 // Comment the following line to run peview links:
-pollForEl('body').then(init);
+//pollForEl(".CDC002").then(init);
 
 async function init() {
-    
-    const testAlreadyLoaded = document.body.classList.contains(testName)
-    const errorMsg = "Test already loaded"
+  const testAlreadyLoaded = document.body.classList.contains(testName);
+  const errorMsg = "Test already loaded";
 
-    if (testAlreadyLoaded) { console.warn(errorMsg); return }
+  if (testAlreadyLoaded) {
+    console.warn(errorMsg);
+    return;
+  }
 
-    document.body.classList.add(testName);
+  //if (isIE()) polyfillFetch();
 
-    _onLoad()
+  document.body.classList.add(testName);
 
-
-
+  _onLoad();
 }
-
-
-
